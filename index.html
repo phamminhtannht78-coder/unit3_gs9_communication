@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: Communication & Grammar — Global Success 9</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-size: 24px;
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10px) translateX(0); }
+            100% { transform: translateY(105vh) translateX(30px); }
+        }
+
+        #fireworks-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .card-shadow {
+            box-shadow: 0 12px 30px -5px rgba(27, 94, 32, 0.2), 0 8px 12px -6px rgba(27, 94, 32, 0.1);
+        }
+    </style>
+</head>
+<body class="flex flex-col justify-between text-gray-800 relative selection:bg-emerald-200">
+
+    <canvas id="fireworks-canvas"></canvas>
+    <div id="snow-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+    <!-- Header Navigation -->
+    <header class="w-full bg-emerald-800 text-white py-4 px-6 shadow-xl z-10 flex flex-wrap justify-between items-center sticky top-0 backdrop-blur-md bg-opacity-95 border-b border-emerald-600">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-emerald-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner">
+                💬
+            </div>
+            <div>
+                <h1 class="text-xl md:text-2xl font-black tracking-tight text-white">Global Success 9</h1>
+                <p class="text-xs text-emerald-200 font-medium hidden sm:block">Unit 3: Communication & Reading</p>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-3 mt-2 sm:mt-0">
+            <div id="mode-badge" class="bg-emerald-950/80 border border-emerald-500 px-3 py-1 rounded-full text-xs font-semibold text-emerald-200 shadow-sm">
+                Communication & Reading Mode
+            </div>
+            <div class="bg-amber-400 text-emerald-950 font-black px-4 py-1.5 rounded-full text-sm shadow-md flex items-center space-x-1">
+                <span>⭐ Score:</span>
+                <span id="score-display" class="text-lg">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="w-full max-w-4xl mx-auto px-4 mt-6 z-10 flex flex-wrap justify-center gap-2 sm:gap-3">
+        <button id="tab-comm" onclick="switchTab('comm')" class="px-5 py-2.5 rounded-2xl font-bold text-sm shadow-md transition transform active:scale-95 cursor-pointer bg-emerald-600 text-white border-2 border-emerald-500">
+            💬 Everyday English: Asking for Repetition
+        </button>
+        <button id="tab-grammar" onclick="switchTab('grammar')" class="px-5 py-2.5 rounded-2xl font-bold text-sm shadow-md transition transform active:scale-95 cursor-pointer bg-white text-emerald-800 border-2 border-emerald-200 hover:bg-emerald-50">
+            📚 Grammar: Mind Structures
+        </button>
+        <button id="tab-reading" onclick="switchTab('reading')" class="px-5 py-2.5 rounded-2xl font-bold text-sm shadow-md transition transform active:scale-95 cursor-pointer bg-white text-emerald-800 border-2 border-emerald-200 hover:bg-emerald-50">
+            📖 Reading: Tips for Happiness
+        </button>
+    </div>
+
+    <!-- Main Interactive Content Container -->
+    <main class="flex-grow flex items-center justify-center p-4 my-2 z-10">
+        <div class="w-full max-w-4xl bg-white/95 backdrop-blur-md rounded-3xl card-shadow p-5 sm:p-8 transition-all duration-300 border border-emerald-100">
+
+            <!-- ================= COMMUNICATION SECTION ================= -->
+            <div id="view-comm" class="block space-y-6">
+                <div class="text-center">
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">Everyday English</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-emerald-900 mt-2">Asking for Repetition and Responding</h2>
+                    <p class="text-sm text-emerald-700 font-medium mt-1">Review the conversation dialogues and practice matching phrases.</p>
+                </div>
+
+                <div class="space-y-4 max-h-[420px] overflow-y-auto pr-2 text-base">
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 shadow-sm">
+                        <h3 class="font-bold text-emerald-900 text-lg mb-2">🗣️ Conversation 1</h3>
+                        <div class="bg-white p-3 rounded-lg border border-emerald-100 space-y-1">
+                            <div><span class="font-bold text-emerald-700">Mai:</span> Can you open the door, Tom?</div>
+                            <div><span class="font-bold text-amber-700">Tom:</span> <span class="bg-amber-100 px-1.5 py-0.5 rounded font-bold">Sorry?</span> <span class="text-xs text-gray-500">(Asking for repetition)</span></div>
+                            <div><span class="font-bold text-emerald-700">Mai:</span> Can you open the door, please?</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 shadow-sm">
+                        <h3 class="font-bold text-emerald-900 text-lg mb-2">🗣️ Conversation 2</h3>
+                        <div class="bg-white p-3 rounded-lg border border-emerald-100 space-y-1">
+                            <div><span class="font-bold text-emerald-700">Nick:</span> Excuse me. Would you mind showing me the way to the post office?</div>
+                            <div><span class="font-bold text-amber-700">Woman:</span> <span class="bg-amber-100 px-1.5 py-0.5 rounded font-bold">I beg your pardon.</span> <span class="text-xs text-gray-500">(Asking for repetition)</span></div>
+                            <div><span class="font-bold text-emerald-700">Nick:</span> Would you mind showing me the way to the post office?</div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Practice Quiz -->
+                    <div class="bg-emerald-100/70 p-4 rounded-xl border border-emerald-300">
+                        <h3 class="font-bold text-emerald-900 text-base mb-2">✨ Practice: Fill in the missing repetition phrase</h3>
+                        <p class="text-sm text-emerald-800 mb-2">Person A: "Could you pass me the notebook, please?"<br>Person B: <select id="comm-ans" class="border-2 border-emerald-300 p-1.5 rounded-lg text-sm bg-white font-semibold">
+                            <option value="">-- choose response --</option>
+                            <option value="sorry">Sorry?</option>
+                            <option value="thanks">Thank you.</option>
+                            <option value="goodbye">Goodbye.</option>
+                        </select></p>
+                        <button onclick="checkCommAnswer()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2 rounded-xl text-sm shadow cursor-pointer transition">Check Answer ✅</button>
+                        <div id="comm-fb" class="text-sm font-bold mt-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= GRAMMAR THEORY & PRACTICE SECTION ================= -->
+            <div id="view-grammar" class="hidden space-y-6">
+                <div class="text-center">
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">Grammar Focus</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-emerald-900 mt-2">Structures with "Mind"</h2>
+                    <p class="text-sm text-emerald-700 font-medium mt-1">Learn how to make polite requests and ask for permission.</p>
+                </div>
+
+                <div class="space-y-4 max-h-[420px] overflow-y-auto pr-2 text-base">
+                    <!-- Theory Box 1 -->
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 shadow-sm space-y-2">
+                        <h3 class="font-bold text-emerald-900 text-lg">1. Would you mind + V-ing...?</h3>
+                        <p class="text-sm text-emerald-800">Dùng để nhờ ai đó làm việc gì một cách lịch sự.</p>
+                        <p class="text-sm font-semibold text-emerald-900 bg-white p-2 rounded border border-emerald-100">💡 Ví dụ: <span class="text-emerald-700">Would you mind showing me the way to the post office?</span> (Bạn phiền chỉ đường cho tôi tới bưu điện được không?)</p>
+                        <p class="text-xs text-emerald-700 font-medium">👉 Cách đáp lại đồng ý: <span class="font-bold">No, not at all. / Of course not. / Sure, I'd love to.</span></p>
+                    </div>
+
+                    <!-- Theory Box 2 -->
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 shadow-sm space-y-2">
+                        <h3 class="font-bold text-emerald-900 text-lg">2. Do you mind if I + Simple Present...?</h3>
+                        <p class="text-sm text-emerald-800">Dùng để xin phép làm điều gì đó một cách lịch sự.</p>
+                        <p class="text-sm font-semibold text-emerald-900 bg-white p-2 rounded border border-emerald-100">💡 Ví dụ: <span class="text-emerald-700">Do you mind if I open the window?</span> (Tôi mở cửa sổ có phiền bạn không? / Tôi mở cửa sổ nhé?)</p>
+                        <p class="text-xs text-emerald-700 font-medium">👉 Cách đáp lại đồng ý: <span class="font-bold">No, please do. / Not at all. / Go ahead.</span></p>
+                    </div>
+
+                    <!-- Practice Quiz -->
+                    <div class="bg-emerald-100/70 p-4 rounded-xl border border-emerald-300 space-y-4">
+                        <h3 class="font-bold text-emerald-900 text-base">📝 Practice Quiz (3 Questions)</h3>
+                        
+                        <!-- Q1 -->
+                        <div class="bg-white p-3 rounded-lg border border-emerald-200 space-y-2">
+                            <p class="text-sm font-semibold text-emerald-900">1. Would you mind ____________ the heavy box for me?</p>
+                            <div class="flex gap-2">
+                                <button onclick="checkGrammarQ(1, 'carry')" id="g1-a" class="px-3 py-1 bg-emerald-50 hover:bg-emerald-100 text-xs font-bold rounded border border-emerald-300 cursor-pointer">A. carry</button>
+                                <button onclick="checkGrammarQ(1, 'carrying')" id="g1-b" class="px-3 py-1 bg-emerald-50 hover:bg-emerald-100 text-xs font-bold rounded border border-emerald-300 cursor-pointer">B. carrying</button>
+                            </div>
+                            <div id="g1-fb" class="text-xs font-bold"></div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="bg-white p-3 rounded-lg border border-emerald-200 space-y-2">
+                            <p class="text-sm font-semibold text-emerald-900">2. Do you mind if I ____________ your laptop?</p>
+                            <div class="flex gap-2">
+                                <button onclick="checkGrammarQ(2, 'use')" id="g2-a" class="px-3 py-1 bg-emerald-50 hover:bg-emerald-100 text-xs font-bold rounded border border-emerald-300 cursor-pointer">A. use</button>
+                                <button onclick="checkGrammarQ(2, 'using')" id="g2-b" class="px-3 py-1 bg-emerald-50 hover:bg-emerald-100 text-xs font-bold rounded border border-emerald-300 cursor-pointer">B. using</button>
+                            </div>
+                            <div id="g2-fb" class="text-xs font-bold"></div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="bg-white p-3 rounded-lg border border-emerald-200 space-y-2">
+                            <p class="text-sm font-semibold text-emerald-900">3. When someone agrees to your request with "Would you mind...", they usually say:</p>
+                            <div class="flex gap-2">
+                                <button onclick="checkGrammarQ(3, 'yes')" id="g3-a" class="px-3 py-1 bg-emerald-50 hover:bg-emerald-100 text-xs font-bold rounded border border-emerald-300 cursor-pointer">A. Yes, please do.</button>
+                                <button onclick="checkGrammarQ(3, 'no')" id="g3-b" class="px-3 py-1 bg-emerald-50 hover:bg-emerald-100 text-xs font-bold rounded border border-emerald-300 cursor-pointer">B. No, not at all.</button>
+                            </div>
+                            <div id="g3-fb" class="text-xs font-bold"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= READING SECTION ================= -->
+            <div id="view-reading" class="hidden space-y-6">
+                <div class="text-center">
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">Reading Comprehension</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-emerald-900 mt-2">Tips for being happy on school days</h2>
+                    <p class="text-sm text-emerald-700 font-medium mt-1">Read the text and answer the question below.</p>
+                </div>
+
+                <div class="space-y-4 max-h-[420px] overflow-y-auto pr-2 text-base">
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 shadow-sm leading-relaxed text-emerald-900">
+                        <h3 class="font-bold text-emerald-900 text-lg mb-2">🌿 Do nice things to others</h3>
+                        <p class="italic text-base text-emerald-800">"Praise or encourage your classmates for a fun activity. Thank your teacher for his or her interesting lesson. Making other people feel happy can bring you great happiness."</p>
+                    </div>
+
+                    <div class="bg-emerald-100/70 p-4 rounded-xl border border-emerald-300 space-y-3">
+                        <h3 class="font-bold text-emerald-900 text-base">❓ Comprehension Question</h3>
+                        <label class="block text-sm font-semibold text-emerald-800">What can making other people feel happy bring you?</label>
+                        <input type="text" id="reading-ans" placeholder="Type your answer here..." class="border-2 border-emerald-300 px-4 py-2 rounded-xl text-sm w-full bg-white font-medium">
+                        <button onclick="checkReadingAnswer()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2 rounded-xl text-sm shadow cursor-pointer transition">Submit Answer ✅</button>
+                        <div id="reading-fb" class="text-sm font-bold mt-2"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full text-center py-4 text-xs text-emerald-900 bg-emerald-100/80 font-semibold z-10 border-t border-emerald-200">
+        Global Success 9 • Unit 3: Communication & Reading ❄️🌱
+    </footer>
+
+    <script>
+        /* AUDIO SYSTEM */
+        let audioCtx = null;
+        function initAudio() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+
+        function playSound(type) {
+            try {
+                initAudio();
+                if (!audioCtx) return;
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                const now = audioCtx.currentTime;
+
+                if (type === 'correct') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.12);
+                    osc.frequency.setValueAtTime(783.99, now + 0.24);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+                    osc.start(now);
+                    osc.stop(now + 0.6);
+                } else if (type === 'incorrect') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(329.63, now);
+                    osc.frequency.setValueAtTime(293.66, now + 0.2);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+                    osc.start(now);
+                    osc.stop(now + 0.4);
+                } else {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, now);
+                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+                    osc.start(now);
+                    osc.stop(now + 0.1);
+                }
+            } catch (e) {}
+        }
+
+        /* FIREWORKS & SNOW */
+        const canvas = document.getElementById('fireworks-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+
+        function createFirework(x, y) {
+            const colors = ['#22c55e', '#10b981', '#f59e0b', '#3b82f6', '#ec4899'];
+            for (let i = 0; i < 40; i++) {
+                const angle = (Math.PI * 2 / 40) * i;
+                const speed = Math.random() * 5 + 2;
+                particles.push({
+                    x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    radius: Math.random() * 3 + 2, alpha: 1, decay: Math.random() * 0.02 + 0.015
+                });
+            }
+        }
+
+        function animateFireworks() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.alpha -= p.decay;
+                if (p.alpha <= 0) { particles.splice(i, 1); }
+                else {
+                    ctx.save(); ctx.globalAlpha = p.alpha;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color; ctx.fill(); ctx.restore();
+                }
+            }
+            requestAnimationFrame(animateFireworks);
+        }
+        animateFireworks();
+
+        function triggerVictory() {
+            createFirework(canvas.width * 0.3, canvas.height * 0.4);
+            setTimeout(() => createFirework(canvas.width * 0.7, canvas.height * 0.3), 150);
+        }
+
+        function initSnow() {
+            const container = document.getElementById('snow-container');
+            for (let i = 0; i < 20; i++) {
+                const flake = document.createElement('div');
+                flake.className = 'snowflake';
+                const size = Math.random() * 6 + 4 + 'px';
+                flake.style.width = size; flake.style.height = size;
+                flake.style.left = Math.random() * 100 + 'vw';
+                flake.style.opacity = Math.random() * 0.7 + 0.3;
+                flake.style.animationDuration = Math.random() * 6 + 5 + 's';
+                container.appendChild(flake);
+            }
+        }
+
+        let totalScore = 0;
+        function updateScore(pts) {
+            totalScore += pts;
+            document.getElementById('score-display').innerText = totalScore;
+        }
+
+        function checkCommAnswer() {
+            initAudio();
+            const val = document.getElementById('comm-ans').value;
+            const fb = document.getElementById('comm-fb');
+            if (val === 'sorry') {
+                playSound('correct'); triggerVictory(); updateScore(50);
+                fb.innerText = "Correct! 'Sorry?' is used to ask for repetition.";
+                fb.className = "text-sm font-bold text-emerald-600 mt-2";
+            } else {
+                playSound('incorrect');
+                fb.innerText = "Incorrect! Try again.";
+                fb.className = "text-sm font-bold text-red-600 mt-2";
+            }
+        }
+
+        function checkGrammarQ(qNum, choice) {
+            initAudio();
+            const fb = document.getElementById(`g${qNum}-fb`);
+            let isCorrect = false;
+            if (qNum === 1 && choice === 'carrying') isCorrect = true;
+            if (qNum === 2 && choice === 'use') isCorrect = true;
+            if (qNum === 3 && choice === 'no') isCorrect = true;
+
+            if (isCorrect) {
+                playSound('correct'); triggerVictory(); updateScore(30);
+                fb.innerText = "Correct! Excellent job.";
+                fb.className = "text-xs font-bold text-emerald-600 mt-1";
+            } else {
+                playSound('incorrect');
+                fb.innerText = "Incorrect! Try again.";
+                fb.className = "text-xs font-bold text-red-600 mt-1";
+            }
+        }
+
+        function checkReadingAnswer() {
+            initAudio();
+            const val = document.getElementById('reading-ans').value.trim().toLowerCase();
+            const fb = document.getElementById('reading-fb');
+            if (val.includes("happiness") || val.includes("great happiness")) {
+                playSound('correct'); triggerVictory(); updateScore(50);
+                fb.innerText = "Correct! Making other people feel happy can bring you great happiness.";
+                fb.className = "text-sm font-bold text-emerald-600 mt-2";
+            } else {
+                playSound('incorrect');
+                fb.innerText = "Incorrect! Check the text above (great happiness).";
+                fb.className = "text-sm font-bold text-red-600 mt-2";
+            }
+        }
+
+        function switchTab(tab) {
+            playSound('click');
+            ['comm', 'grammar', 'reading'].forEach(t => {
+                const el = document.getElementById(`view-${t}`);
+                if (el) el.classList.add('hidden');
+                const btn = document.getElementById(`tab-${t}`);
+                if (btn) btn.className = "px-5 py-2.5 rounded-2xl font-bold text-sm shadow-md transition transform active:scale-95 cursor-pointer bg-white text-emerald-800 border-2 border-emerald-200 hover:bg-emerald-50";
+            });
+            const targetView = document.getElementById(`view-${tab}`);
+            if (targetView) targetView.classList.remove('hidden');
+            const targetBtn = document.getElementById(`tab-${tab}`);
+            if (targetBtn) targetBtn.className = "px-5 py-2.5 rounded-2xl font-bold text-sm shadow-md transition transform active:scale-95 cursor-pointer bg-emerald-600 text-white border-2 border-emerald-500";
+            
+            if (tab === 'comm') document.getElementById('mode-badge').innerText = 'Everyday English Mode';
+            else if (tab === 'grammar') document.getElementById('mode-badge').innerText = 'Grammar Focus Mode';
+            else document.getElementById('mode-badge').innerText = 'Reading Comprehension Mode';
+        }
+
+        window.onload = function() {
+            initSnow();
+        };
+    </script>
+</body>
+</html>
